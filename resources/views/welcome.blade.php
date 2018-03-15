@@ -30,7 +30,7 @@
                         <h4>{{ $article->title }}</h4>
                         <small> <i class="fa fa-clock-o"></i> {{ $article->created_at }}</small>
                     </div>
-                    <small><i class="fa fa-user-o"></i> {{ $article->user->name }}</small>
+                    <small><i class="fa fa-user-o"></i> {{ $article->owner->name }}</small>
 
                 </div>
 

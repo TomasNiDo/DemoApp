@@ -14,9 +14,9 @@ class Article extends Model
      *
      * @return Relations\BelongsTo
      */
-    public function user()
+    public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
