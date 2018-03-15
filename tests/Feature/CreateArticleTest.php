@@ -54,17 +54,27 @@ class CreateArticleTest extends TestCase
     }
 
     /** @test */
-    public function it_should_contain_error_when_a_field_is_missing()
+    public function it_should_require_a_title()
+    {
+        $this->publishArticle(['title' => null])
+            ->assertSessionHasErrors('title');
+    }
+
+    /** @test */
+    public function it_should_require_a_content()
+    {
+        $this->publishArticle(['content' => null])
+            ->assertSessionHasErrors('content');
+    }
+
+    protected function publishArticle($overrides = [])
     {
         $this->signIn();
 
-        $article = factory('App\Article')->make([
-            'user_id' => auth()->id(),
-            'title' => '',
-            'content' => ''
-        ]);
+        $overrides['user_id'] = auth()->id();
 
-        $this->post(route('articles.store', $article->toArray()))
-            ->assertSessionHasErrors(['title', 'content']);
+        $article = factory('App\Article')->make($overrides);
+
+        return $this->post(route('articles.store', $article->toArray()));
     }
 }
