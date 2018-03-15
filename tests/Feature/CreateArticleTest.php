@@ -38,6 +38,8 @@ class CreateArticleTest extends TestCase
         $this->post(route('articles.store', $article->toArray()))
             ->assertSessionHas('success')
             ->assertRedirect(route('articles'));
+
+        $this->assertDatabaseHas('articles', $article->toArray());
     }
 
     /** @test */
