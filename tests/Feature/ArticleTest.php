@@ -24,7 +24,8 @@ class ArticleTest extends TestCase
             'created_at' => Carbon::now(),
         ]);
 
-        $this->get('/?page=1')
-            ->assertSee($latestArticle->title);
+        $this->get('/')
+            ->assertSee($latestArticle->title)
+            ->assertSee($latestArticle->owner->name);
     }
 }
