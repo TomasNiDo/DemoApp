@@ -14,6 +14,7 @@
 Auth::routes();
 
 Route::get('/', 'ArticlesController@index')->name('articles');
+Route::get('article/{article}', 'ArticlesController@show')->name('articles.show');
 Route::middleware('auth')->group(function () {
     Route::get('articles/create', 'ArticlesController@create')->name('articles.create');
     Route::post('articles', 'ArticlesController@store')->name('articles.store');

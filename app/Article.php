@@ -39,4 +39,14 @@ class Article extends Model
         return Carbon::parse($value)->diffForHumans();
         return Carbon::parse($value)->diffForHumans();
     }
+
+    /**
+     * Get the article excerpt
+     *
+     * @return string
+     */
+    public function excerpt()
+    {
+        return str_limit($this->content, 240);
+    }
 }

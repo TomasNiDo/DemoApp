@@ -25,4 +25,10 @@ class ArticleTest extends TestCase
     {
         $this->assertInstanceOf(\App\User::class, $this->article->owner);
     }
+
+    /** @test */
+    public function it_should_have_an_excerpt()
+    {
+        $this->assertLessThanOrEqual(strlen($this->article->excerpt()), 240);
+    }
 }

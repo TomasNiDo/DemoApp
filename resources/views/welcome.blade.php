@@ -24,20 +24,27 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @foreach ($articles as $article)
-            <div class="card mb-md-3">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                        <h4>{{ $article->title }}</h4>
-                        <small> <i class="fa fa-clock-o"></i> {{ $article->created_at }}</small>
-                    </div>
-                    <small><i class="fa fa-user-o"></i> {{ $article->owner->name }}</small>
+                @component('components.article-card')
+                    @slot('title')
+                        {{ $article->title }}
+                    @endslot
 
-                </div>
+                    @slot('link')
+                        {{ route('articles.show', $article->id) }}
+                    @endslot
 
-                <div class="card-body">
-                    {{ $article->content }}
-                </div>
-            </div>
+                    @slot('author')
+                        {{ $article->owner->name }}
+                    @endslot
+
+                    @slot('published_time')
+                        {{ $article->created_at }}
+                    @endslot
+
+                    @slot('content')
+                        {{ $article->excerpt() }}
+                    @endslot
+                @endcomponent
             @endforeach
         </div>
     </div>
