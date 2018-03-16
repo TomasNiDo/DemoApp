@@ -84,6 +84,10 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
+        if (! auth()->user()->can('update', $article)) {
+            return redirect()->route('articles.show', $article);
+        }
+
         return view('articles.edit', compact('article'));
     }
 
@@ -96,15 +100,14 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required'
-        ]);
+        $this->authorize('update', $article);
 
-        $article = tap($article)->update([
-            'title' => $request->title,
-            'content' => $request->content
-        ]);
+        $article = tap($article)->update(
+            $request->validate([
+                'title' => 'required',
+                'content' => 'required'
+            ])
+        );
 
         return redirect()->route('articles.show', $article);
     }
