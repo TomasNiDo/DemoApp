@@ -14,8 +14,8 @@
 Auth::routes();
 
 Route::get('/', 'ArticlesController@index')->name('articles');
-Route::get('article/{article}', 'ArticlesController@show')->name('articles.show');
-Route::middleware('auth')->group(function () {
-    Route::get('articles/create', 'ArticlesController@create')->name('articles.create');
-    Route::post('articles', 'ArticlesController@store')->name('articles.store');
-});
+Route::get('articles/create', 'ArticlesController@create')->name('articles.create');
+Route::get('articles/{article}', 'ArticlesController@show')->name('articles.show');
+Route::post('articles', 'ArticlesController@store')->name('articles.store');
+Route::patch('articles/{article}', 'ArticlesController@update')->name('articles.update');
+Route::get('articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');

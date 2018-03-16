@@ -14,6 +14,12 @@
             <div class="d-flex">
                 {{ $article->content }}
             </div>
+
+            @can('update', $article)
+                <div class="d-flex mt-md-5">
+                    <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+                </div>
+            @endcan
         </div>
     </div>
 </div>

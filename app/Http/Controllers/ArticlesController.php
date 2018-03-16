@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class ArticlesController extends Controller
 {
     /**
+     * Instantiate class
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -74,7 +84,7 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -86,7 +96,17 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $article = tap($article)->update([
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
+
+        return redirect()->route('articles.show', $article);
     }
 
     /**
