@@ -2,18 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {
     /**
+     * Instantiate controller class
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Article $article)
     {
-        //
+        $comments = Comment::with(['user'])
+            ->where('article_id', $article->id)
+            ->latest()
+            ->get();
+
+        return response()->json(compact('comments'));
     }
 
     /**
@@ -32,9 +49,21 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'content' => 'required'
+        ]);
+
+        $comment = Comment::create([
+            'user_id' => auth()->id(),
+            'article_id' => $article->id,
+            'content' => $request->content
+        ]);
+
+        $comment->load('user');
+
+        return response()->json(compact('comment'));
     }
 
     /**

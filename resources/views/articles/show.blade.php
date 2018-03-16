@@ -20,7 +20,11 @@
                     <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
                 </div>
             @endcan
+
+            <comment-section :article-id="{{ $article->id }}"></comment-section>
         </div>
     </div>
+
+
 </div>
 @endsection

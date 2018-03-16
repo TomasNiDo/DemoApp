@@ -31,9 +31,7 @@ class CreateArticleTest extends TestCase
     {
         $this->signIn();
 
-        $article = factory('App\Article')->make([
-            'user_id' => auth()->id(),
-        ]);
+        $article = factory('App\Article')->make();
 
         $this->post(route('articles.store', $article->toArray()))
             ->assertSessionHas('success')
@@ -45,9 +43,7 @@ class CreateArticleTest extends TestCase
     /** @test */
     public function it_should_not_store_article_from_unauthenticated_user()
     {
-        $article = factory('App\Article')->make([
-            'user_id' => factory('App\User')->create(),
-        ]);
+        $article = factory('App\Article')->make();
 
         $this->post(route('articles.store', $article->toArray()))
             ->assertRedirect(route('login'));

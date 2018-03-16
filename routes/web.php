@@ -19,3 +19,6 @@ Route::get('articles/{article}', 'ArticlesController@show')->name('articles.show
 Route::post('articles', 'ArticlesController@store')->name('articles.store');
 Route::patch('articles/{article}', 'ArticlesController@update')->name('articles.update');
 Route::get('articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');
+
+Route::get('articles/{article}/comments', 'CommentsController@index')->name('articles.comments');
+Route::post('articles/{article}/comments', 'CommentsController@store')->name('articles.comments.store');
