@@ -6,12 +6,12 @@
 - `php artisan migrate`
 - `php artisan db:seed`
 
-# Requirements
+# Prerequisites
 - PHP >=7.1.3
 - PHPUnit 7.0
 - SQLite 3
 
 # Test
-```
+```shell
 vendor\bin\phpunit
 ```
