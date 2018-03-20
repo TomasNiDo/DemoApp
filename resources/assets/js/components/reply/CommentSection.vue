@@ -49,7 +49,8 @@ export default {
     },
 
     data: () => ({
-        comments: {}
+        comments: {},
+        page: 1
     }),
 
     computed: {
@@ -60,6 +61,7 @@ export default {
 
     methods: {
         async getComments(page = 1) {
+            this.page = page;
             try {
                 const { data } = await axios.get(
                     route('articles.comments', {
@@ -79,7 +81,11 @@ export default {
         },
 
         deleteComment(index) {
-            this.$delete(this.comments, index)
+            if (this.comments.current_page == this.comments.last_page && this.comments.data.length == 1) {
+                this.page = (this.page - 1) ? this.page - 1 : 1;
+            }
+
+            this.getComments(this.page);
         }
     },
 
