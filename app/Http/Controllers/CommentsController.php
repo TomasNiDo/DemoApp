@@ -15,7 +15,7 @@ class CommentsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -95,9 +95,19 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comment $comment)
     {
-        //
+        $this->authorize('update', $comment);
+
+        $request->validate([
+            'content' => 'required'
+        ]);
+
+        $comment = tap($comment)->update([
+            'content' => $request->content
+        ]);
+
+        return response()->json(['comment' => $comment]);
     }
 
     /**
@@ -106,8 +116,12 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $this->authorize('delete', $comment);
+
+        $comment->delete();
+
+        return response([], 204);
     }
 }

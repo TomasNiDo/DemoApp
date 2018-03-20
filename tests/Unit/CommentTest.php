@@ -33,4 +33,10 @@ class CommentTest extends TestCase
     {
         $this->assertInstanceOf(\App\User::class, $this->comment->user);
     }
+
+    /** @test */
+    public function it_should_belong_to_an_article()
+    {
+        $this->assertInstanceOf(\App\Article::class, $this->comment->article);
+    }
 }

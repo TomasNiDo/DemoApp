@@ -24,6 +24,7 @@
 
 <script>
 import { Form } from 'vform'
+import swal from 'sweetalert2'
 
 export default {
     name: 'comment-composer',
@@ -42,12 +43,16 @@ export default {
     }),
 
     methods: {
-        submit() {
-            this.form.post(route('articles.comments.store', this.articleId))
-                .then(({ data }) => {
-                    this.form.content = '';
-                    this.$emit('add-comment', data.comment);
-                })
+        async submit() {
+            try {
+                const { data } = await this.form.post(route('articles.comments.store', this.articleId))
+
+                this.form.content = ''
+                this.$emit('add-comment', data.comment)
+            } catch (error) {
+                console.log(error)
+                swal('Oops...', 'Something went wrong!', 'error')
+            }
         }
     }
 }

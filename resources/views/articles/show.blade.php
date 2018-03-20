@@ -21,10 +21,8 @@
                 </div>
             @endcan
 
-            <comment-section :article-id="{{ $article->id }}"></comment-section>
+            <comment-section :article-id="{{ $article->id }}" :auth-check="{{ auth()->check() ? auth()->id() : 0 }}"></comment-section>
         </div>
     </div>
-
-
 </div>
 @endsection

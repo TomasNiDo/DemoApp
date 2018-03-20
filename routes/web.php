@@ -22,3 +22,5 @@ Route::get('articles/{article}/edit', 'ArticlesController@edit')->name('articles
 
 Route::get('articles/{article}/comments', 'CommentsController@index')->name('articles.comments');
 Route::post('articles/{article}/comments', 'CommentsController@store')->name('articles.comments.store');
+Route::patch('articles/comments/{comment}', 'CommentsController@update')->name('articles.comments.update');
+Route::delete('articles/comments/{comment}', 'CommentsController@destroy')->name('articles.comments.delete');

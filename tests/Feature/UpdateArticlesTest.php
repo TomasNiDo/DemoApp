@@ -10,6 +10,8 @@ class UpdateArticlesTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $article;
+
     public function setUp()
     {
         parent::setUp();
@@ -17,21 +19,19 @@ class UpdateArticlesTest extends TestCase
         $this->withExceptionHandling();
 
         $this->signIn();
+
+        $this->article = factory('App\Article')->create(['user_id' => auth()->id()]);
     }
 
     /** @test */
     public function it_can_be_updated_by_its_owner()
     {
-        $article = factory('App\Article')->create([
-            'user_id' => auth()->id()
-        ]);
-
-        $this->patch(route('articles.update', $article->id), [
+        $this->patch(route('articles.update', $this->article->id), [
             'title' => 'Changed',
             'content' => 'Changed content.'
         ]);
 
-        tap($article->fresh(), function ($article) {
+        tap($this->article->fresh(), function ($article) {
             $this->assertEquals('Changed', $article->title);
             $this->assertEquals('Changed content.', $article->content);
         });
@@ -40,15 +40,11 @@ class UpdateArticlesTest extends TestCase
     /** @test */
     public function it_should_require_title_and_content()
     {
-        $article = factory('App\Article')->create([
-            'user_id' => auth()->id()
-        ]);
-
-        $this->patch(route('articles.update', $article->id), [
+        $this->patch(route('articles.update', $this->article->id), [
             'title' => 'Changed'
         ])->assertSessionHasErrors('content');
 
-        $this->patch(route('articles.update', $article->id), [
+        $this->patch(route('articles.update', $this->article->id), [
             'content' => 'Changed content.'
         ])->assertSessionHasErrors('title');
     }
@@ -61,6 +57,6 @@ class UpdateArticlesTest extends TestCase
         ]);
 
         $this->patch(route('articles.update', $article->id), [])
-            ->assertStatus(403);
+             ->assertStatus(403);
     }
 }

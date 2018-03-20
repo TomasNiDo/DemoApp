@@ -34,7 +34,7 @@ class CommentsTest extends TestCase
     }
 
     /** @test */
-    public function it_allows_authenticated_user_to_post_a_comment()
+    public function it_should_allow_authenticated_user_to_post_a_comment()
     {
         $this->signIn();
 

@@ -9,6 +9,7 @@
 # Requirements
 - PHP >=7.1.3
 - PHPUnit 7.0
+- SQLite 3
 
 # Test
 ```
