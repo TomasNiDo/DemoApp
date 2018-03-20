@@ -9,7 +9,7 @@
 # Prerequisites
 - PHP >=7.1.3
 - PHPUnit 7.0
-- SQLite 3
+- SQLite 3 (for testing)
 
 # Test
 ```shell
