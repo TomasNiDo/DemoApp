@@ -28,19 +28,9 @@ class CommentsController extends Controller
         $comments = Comment::with(['user'])
             ->where('article_id', $article->id)
             ->latest()
-            ->get();
+            ->paginate(5);
 
         return response()->json(compact('comments'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -64,28 +54,6 @@ class CommentsController extends Controller
         $comment->load('user');
 
         return response()->json(compact('comment'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

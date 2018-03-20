@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "laravel-vue-pagination": "^1.2.0",
         "moment": "^2.21.0",
         "moment-timezone": "^0.5.14",
         "sweetalert2": "^7.16.0",

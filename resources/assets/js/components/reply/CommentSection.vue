@@ -9,12 +9,16 @@
 
         <div class="comments-box">
             <comment-box
-                v-for="(comment, index) in comments"
+                v-for="(comment, index) in comments.data"
                 :key="index"
                 :comment="comment"
                 :auth-check="authCheck"
                 @delete-comment="deleteComment(index)"
             ></comment-box>
+        </div>
+
+        <div class="pagination-container d-flex justify-content-center">
+            <pagination :data="comments" @pagination-change-page="getComments"></pagination>
         </div>
     </div>
 </template>
@@ -22,6 +26,8 @@
 <script>
 import CommentComposer from './CommentComposer'
 import CommentBox from './CommentBox'
+
+Vue.component('pagination', require("laravel-vue-pagination"))
 
 export default {
     name: 'comment-section',
@@ -43,7 +49,7 @@ export default {
     },
 
     data: () => ({
-        comments: []
+        comments: {}
     }),
 
     computed: {
@@ -53,8 +59,23 @@ export default {
     },
 
     methods: {
+        async getComments(page = 1) {
+            try {
+                const { data } = await axios.get(
+                    route('articles.comments', {
+                        article: this.articleId,
+                        page
+                    })
+                )
+
+                this.$set(this, 'comments', data.comments)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         addComment(comment) {
-            this.comments.unshift(comment)
+            this.getComments();
         },
 
         deleteComment(index) {
@@ -62,14 +83,8 @@ export default {
         }
     },
 
-    async mounted() {
-        try {
-            const { data } = await axios.get(route('articles.comments', this.articleId))
-
-            Vue.set(this, 'comments', data.comments)
-        } catch (error) {
-            console.log(error);
-        }
+    mounted() {
+        this.getComments()
     }
 }
 </script>
