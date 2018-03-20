@@ -6,7 +6,7 @@
 - `php artisan migrate`
 - `php artisan db:seed`
 
-# Test Accounts
+# Test Account
 Email: johndoe@example.com <br>
 Password: secret
 
