@@ -21,4 +21,16 @@ class ArticlePolicy
     {
         return $article->user_id == $user->id;
     }
+
+    /**
+     * Determine whether the user can update the article.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Article  $article
+     * @return mixed
+     */
+    public function delete(User $user, Article $article)
+    {
+        return $article->user_id == $user->id;
+    }
 }

@@ -17,7 +17,8 @@
 
             @can('update', $article)
                 <div class="d-flex mt-md-5">
-                    <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</a>
+                    <a href="{{ route('articles.edit', $article->id) }}" class="btn btn-primary mr-md-1"><i class="fa fa-pencil"></i> Edit</a>
+                    <delete-button :article-id="{{ $article->id }}"></delete-button>
                 </div>
             @endcan
 
