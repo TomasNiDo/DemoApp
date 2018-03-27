@@ -6,6 +6,10 @@
 - `php artisan migrate`
 - `php artisan db:seed`
 
+# Test Account
+Email: johndoe@example.com <br>
+Password: secret
+
 # Prerequisites
 - PHP >=7.1.3
 - PHPUnit 7.0

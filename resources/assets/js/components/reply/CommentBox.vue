@@ -20,7 +20,6 @@
                     </div>
                 </div>
                 <div class="mt-md-1">
-                    <small><i class="fa fa-clock-o"></i> {{ timeAgo }}</small>
                     <button class="btn btn-sm" v-show="!update && owner" @click="enableUpdate">Edit</button>
                 </div>
             </div>
@@ -29,7 +28,6 @@
 </template>
 
 <script>
-import moment from 'moment-timezone'
 import swal from 'sweetalert2'
 import { Form } from 'vform'
 
@@ -56,11 +54,6 @@ export default {
     }),
 
     computed: {
-        timeAgo() {
-            let timeAgo = moment(this.comment.created_at + "+08:00", "YYYY-MM-DD HH:mm:ssZ")
-            return timeAgo.fromNow()
-        },
-
         owner() {
             return this.authCheck == this.comment.user_id
         }
