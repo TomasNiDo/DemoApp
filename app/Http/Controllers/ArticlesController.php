@@ -47,16 +47,11 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required'
-        ]);
-
-        Article::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'user_id' => auth()->id()
-        ]);
+        auth()->user()->articles()
+            ->create($request->validate([
+                'title' => 'required',
+                'content' => 'required'
+            ]));
 
         return redirect()
             ->route('articles')
