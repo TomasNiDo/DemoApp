@@ -1,7 +1,7 @@
 <?php
 
-use App\Article;
 use App\User;
+use App\Article;
 use Illuminate\Database\Seeder;
 
 class CommentsTableSeeder extends Seeder
@@ -18,7 +18,7 @@ class CommentsTableSeeder extends Seeder
         $articles->each(function ($article) {
             factory('App\Comment')->create([
                 'article_id' => $article->id,
-                'user_id' => User::inRandomOrder()->first()->id
+                'user_id' => User::inRandomOrder()->first()->id,
             ]);
         });
     }

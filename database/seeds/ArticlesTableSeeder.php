@@ -16,7 +16,7 @@ class ArticlesTableSeeder extends Seeder
 
         $users->each(function ($user) {
             factory('App\Article', 2)->create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
             ]);
         });
     }

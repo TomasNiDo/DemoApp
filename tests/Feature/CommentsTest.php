@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CommentsTest extends TestCase
@@ -20,7 +19,7 @@ class CommentsTest extends TestCase
 
         $this->article = factory('App\Article')
             ->create([
-                'user_id' => factory('App\User')->create()->id
+                'user_id' => factory('App\User')->create()->id,
             ]);
     }
 

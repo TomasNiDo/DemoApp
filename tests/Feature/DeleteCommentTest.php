@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteCommentTest extends TestCase
@@ -18,14 +17,13 @@ class DeleteCommentTest extends TestCase
         parent::setUp();
 
         $this->article = factory('App\Article')->create([
-            'user_id' => factory('App\User')->create()->id
+            'user_id' => factory('App\User')->create()->id,
         ]);
 
         $this->comment = factory('App\Comment')->create([
             'user_id' => factory('App\User')->create()->id,
-            'article_id' => $this->article->id
+            'article_id' => $this->article->id,
         ]);
-
     }
 
     /** @test */
@@ -35,7 +33,7 @@ class DeleteCommentTest extends TestCase
 
         $comment = factory('App\Comment')->create([
             'user_id' => auth()->id(),
-            'article_id' => $this->article->id
+            'article_id' => $this->article->id,
         ]);
 
         $this->delete(route('articles.comments.delete', $comment->id))

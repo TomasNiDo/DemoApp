@@ -9,7 +9,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     /**
-     * Sign in a user
+     * Sign in a user.
      *
      * @param User $user
      * @return self

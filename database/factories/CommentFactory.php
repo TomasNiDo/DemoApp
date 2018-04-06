@@ -4,6 +4,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Comment::class, function (Faker $faker) {
     return [
-        'content' => $faker->sentence(12, true)
+        'content' => $faker->sentence(12, true),
     ];
 });

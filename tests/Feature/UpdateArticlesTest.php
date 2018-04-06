@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateArticlesTest extends TestCase
@@ -28,7 +27,7 @@ class UpdateArticlesTest extends TestCase
     {
         $this->patch(route('articles.update', $this->article->id), [
             'title' => 'Changed',
-            'content' => 'Changed content.'
+            'content' => 'Changed content.',
         ]);
 
         tap($this->article->fresh(), function ($article) {
@@ -41,11 +40,11 @@ class UpdateArticlesTest extends TestCase
     public function it_should_require_title_and_content()
     {
         $this->patch(route('articles.update', $this->article->id), [
-            'title' => 'Changed'
+            'title' => 'Changed',
         ])->assertSessionHasErrors('content');
 
         $this->patch(route('articles.update', $this->article->id), [
-            'content' => 'Changed content.'
+            'content' => 'Changed content.',
         ])->assertSessionHasErrors('title');
     }
 
@@ -53,7 +52,7 @@ class UpdateArticlesTest extends TestCase
     public function it_should_prevent_unauthorize_user_to_update_article()
     {
         $article = factory('App\Article')->create([
-            'user_id' => factory('App\User')->create()->id
+            'user_id' => factory('App\User')->create()->id,
         ]);
 
         $this->patch(route('articles.update', $article->id), [])
