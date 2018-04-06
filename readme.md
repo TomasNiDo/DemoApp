@@ -1,5 +1,5 @@
 # Laravel 5.6 Demo App using TDD
-[![Build Status](https://travis-ci.org/VerzatileTom/DemoApp.svg?branch=master)](https://travis-ci.org/VerzatileTom/DemoApp)
+[![Build Status](https://travis-ci.org/VerzatileTom/DemoApp.svg?branch=master)](https://travis-ci.org/VerzatileTom/DemoApp) [![StyleCI](https://styleci.io/repos/125182649/shield?branch=master)](https://styleci.io/repos/125182649)
 
 # Installation
 - Clone
