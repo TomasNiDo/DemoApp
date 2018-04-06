@@ -3,14 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 
 class Comment extends Model
 {
     protected $guarded = [];
 
     /**
-     * Get comment owner details
+     * Get comment owner details.
      *
      * @return Relations\BelongsTo
      */
@@ -20,7 +19,7 @@ class Comment extends Model
     }
 
     /**
-     * Get article owner details
+     * Get article owner details.
      *
      * @return Relations\BelongsTo
      */

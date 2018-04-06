@@ -2,15 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
     protected $guarded = [];
 
     /**
-     * Get the article owner details
+     * Get the article owner details.
      *
      * @return Relations\BelongsTo
      */
@@ -20,7 +20,7 @@ class Article extends Model
     }
 
     /**
-     * Get the article comments
+     * Get the article comments.
      *
      * @return Relations\HasMany
      */
@@ -30,18 +30,19 @@ class Article extends Model
     }
 
     /**
-     * Custom accessor for created_at attribute
+     * Custom accessor for created_at attribute.
      *
      * @return string
      */
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->diffForHumans();
+
         return Carbon::parse($value)->diffForHumans();
     }
 
     /**
-     * Get the article excerpt
+     * Get the article excerpt.
      *
      * @return string
      */

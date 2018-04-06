@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * User's list of articles
+     * User's list of articles.
      *
      * @return Relations/HasMany
      */

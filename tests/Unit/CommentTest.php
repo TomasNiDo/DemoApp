@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CommentTest extends TestCase
@@ -19,12 +18,12 @@ class CommentTest extends TestCase
         $this->signIn();
 
         $article = factory('App\Article')->create([
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(),
         ]);
 
         $this->comment = factory('App\Comment')->create([
             'user_id' => auth()->id(),
-            'article_id' => $article->id
+            'article_id' => $article->id,
         ]);
     }
 

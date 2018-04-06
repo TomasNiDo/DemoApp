@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateCommentTest extends TestCase
@@ -20,12 +19,12 @@ class UpdateCommentTest extends TestCase
         $this->signIn();
 
         $this->article = factory('App\Article')->create([
-            'user_id' => factory('App\User')->create()->id
+            'user_id' => factory('App\User')->create()->id,
         ]);
 
         $this->comment = factory('App\Comment')->create([
             'user_id' => auth()->id(),
-            'article_id' => $this->article->id
+            'article_id' => $this->article->id,
         ]);
     }
 
@@ -33,7 +32,7 @@ class UpdateCommentTest extends TestCase
     public function it_can_be_updated_by_its_owner()
     {
         $this->patch(route('articles.comments.update', $this->comment->id), [
-            'content' => 'Changed comment.'
+            'content' => 'Changed comment.',
         ]);
 
         tap($this->comment->fresh(), function ($comment) {
@@ -53,7 +52,7 @@ class UpdateCommentTest extends TestCase
     {
         $comment = factory('App\Comment')->create([
             'user_id' => factory('App\User')->create()->id,
-            'article_id' => $this->article->id
+            'article_id' => $this->article->id,
         ]);
 
         $this->patch(route('articles.comments.update', $comment->id), [])

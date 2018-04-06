@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ArticlesController extends Controller
 {
     /**
-     * Instantiate class
+     * Instantiate class.
      *
      * @return void
      */
@@ -50,7 +50,7 @@ class ArticlesController extends Controller
         auth()->user()->articles()
             ->create($request->validate([
                 'title' => 'required',
-                'content' => 'required'
+                'content' => 'required',
             ]));
 
         return redirect()
@@ -100,7 +100,7 @@ class ArticlesController extends Controller
         $article = tap($article)->update(
             $request->validate([
                 'title' => 'required',
-                'content' => 'required'
+                'content' => 'required',
             ])
         );
 

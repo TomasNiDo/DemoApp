@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CommentsController extends Controller
 {
     /**
-     * Instantiate controller class
+     * Instantiate controller class.
      *
      * @return void
      */
@@ -42,13 +42,13 @@ class CommentsController extends Controller
     public function store(Request $request, Article $article)
     {
         $request->validate([
-            'content' => 'required'
+            'content' => 'required',
         ]);
 
         $comment = Comment::create([
             'user_id' => auth()->id(),
             'article_id' => $article->id,
-            'content' => $request->content
+            'content' => $request->content,
         ]);
 
         $comment->load('user');
@@ -68,11 +68,11 @@ class CommentsController extends Controller
         $this->authorize('update', $comment);
 
         $request->validate([
-            'content' => 'required'
+            'content' => 'required',
         ]);
 
         $comment = tap($comment)->update([
-            'content' => $request->content
+            'content' => $request->content,
         ]);
 
         return response()->json(['comment' => $comment]);

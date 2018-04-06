@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteArticleTest extends TestCase
@@ -17,7 +16,7 @@ class DeleteArticleTest extends TestCase
         parent::setUp();
 
         $this->article = factory('App\Article')->create([
-            'user_id' => factory('App\User')->create()->id
+            'user_id' => factory('App\User')->create()->id,
         ]);
     }
 
