@@ -47,7 +47,7 @@ class CommentPosted extends Notification
         $user = $this->comment->user->name;
 
         return (new MailMessage)
-                    ->line("{$user} commented on your article, ${article}.")
+                    ->line("{$user} commented on your article, {$article}.")
                     ->action('Article', $url);
     }
 
