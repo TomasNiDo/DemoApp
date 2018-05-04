@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Article;
 use App\Comment;
-use App\Notifications\CommentPosted;
-use App\User;
 use Illuminate\Http\Request;
+use App\Notifications\CommentPosted;
 
 class CommentsController extends Controller
 {
