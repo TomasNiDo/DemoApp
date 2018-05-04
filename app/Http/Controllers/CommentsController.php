@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Comment;
+use App\Notifications\CommentPosted;
+use App\User;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -52,6 +54,8 @@ class CommentsController extends Controller
         ]);
 
         $comment->load('user');
+
+        $article->owner->notify(new CommentPosted($comment));
 
         return response()->json(compact('comment'));
     }
