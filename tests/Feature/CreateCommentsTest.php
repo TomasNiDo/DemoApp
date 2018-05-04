@@ -2,12 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Notifications\CommentPosted;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
+use App\Notifications\CommentPosted;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateCommentsTest extends TestCase
 {
@@ -29,7 +27,6 @@ class CreateCommentsTest extends TestCase
                 'user_id' => $this->user->id,
             ]);
         $this->comment = factory('App\Comment')->make();
-
     }
 
     /** @test */
